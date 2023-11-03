@@ -5,3 +5,5 @@ lib
 pyvenv.cfg
 sample.txt
 testes.py
+a.csv
+__pycache__/

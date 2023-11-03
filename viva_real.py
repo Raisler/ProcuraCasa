@@ -25,7 +25,7 @@ def get_dom(the_url, retry_delay=7):
         time.sleep(retry_delay)
 
 base_url_zero = "https://www.vivareal.com.br"
-base_url= "https://www.vivareal.com.br/aluguel/santa-catarina/florianopolis/?pagina=" 
+base_url= "https://www.vivareal.com.br/venda/brasil/casa_residencial/#banheiros=3&preco-ate=500000" 
 
 pages_url = []    
 listing_url = []
@@ -79,6 +79,13 @@ for page in listing_url:
 
         time.sleep(random.randint(1, 4))
 
-df = pd.DataFrame(values_dict)
 
-print(df)
+df = pd.DataFrame(values_dict)
+from clean_data import Cleaning as c
+df['n_room'] = df['n_room'].apply(c.n_room).astype(int)
+df['area'] = df['area'].apply(c.area).astype(int)
+df['price'] = df['price'].apply(c.price).astype(int)
+
+
+df.to_csv('a.csv', index=False)
+
