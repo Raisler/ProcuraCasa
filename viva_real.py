@@ -4,6 +4,7 @@ import lxml.etree as et
 import pandas as pd 
 import time
 import random
+from clean_data import Cleaning as c
 
 header = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.66 Safari/537.36"
@@ -81,7 +82,6 @@ for page in listing_url:
 
 
 df = pd.DataFrame(values_dict)
-from clean_data import Cleaning as c
 df['n_room'] = df['n_room'].apply(c.n_room).astype(int)
 df['area'] = df['area'].apply(c.area).astype(int)
 df['price'] = df['price'].apply(c.price).astype(int)
